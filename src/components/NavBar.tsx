@@ -7,8 +7,9 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
   useColorModeValue,
-  useMediaQuery,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -16,18 +17,18 @@ import logo from "../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 
 const NavBar = () => {
-  const color = useColorModeValue("black", "white");
-  const borderColor = useColorModeValue("black", "white");
-  const hoverBg = useColorModeValue("gray.100", "gray.700");
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  // base = < 48em (~768px), md = ≥ 48em
 
-  // cek apakah layar <= 450px
-  const [isMobile] = useMediaQuery("(max-width: 450px)");
+  const textColor = useColorModeValue("black", "white");
+  const numberColor = useColorModeValue("#00987a", "#57dfc2");
+  const hoverBorderColor = useColorModeValue("#00987a", "#57dfc2");
 
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Projects", to: "/projects" },
     { label: "About", to: "/about" },
-    { label: "Contact", to: "/contact" },
+    { label: "Resume", to: "/resume" },
   ];
 
   return (
@@ -42,7 +43,7 @@ const NavBar = () => {
 
       {/* Menu */}
       {isMobile ? (
-        <Menu>
+        <Menu closeOnSelect>
           <MenuButton
             as={IconButton}
             icon={<GiHamburgerMenu />}
@@ -53,27 +54,43 @@ const NavBar = () => {
             mr={2}
           />
           <MenuList>
-            {navItems.map((item) => (
-              <MenuItem as={RouterLink} to={item.to} key={item.to}>
-                {item.label}
+            {navItems.map((item, index) => (
+              <MenuItem
+                as={RouterLink}
+                to={item.to}
+                key={item.to}
+                display="flex"
+                alignItems="center"
+                gap={2}
+              >
+                <Text color={numberColor} fontWeight="bold">
+                  {String(index + 1).padStart(2, "0")}.
+                </Text>
+                <Text color={textColor}>{item.label}</Text>
               </MenuItem>
             ))}
           </MenuList>
         </Menu>
       ) : (
         <HStack spacing={2} ml="auto" mr={2}>
-          {navItems.map((item) => (
+          {navItems.map((item, index) => (
             <Button
               key={item.to}
               as={RouterLink}
               to={item.to}
               size="sm"
               variant="outline"
-              color={color}
-              borderColor={borderColor}
-              _hover={{ bg: hoverBg }}
+              borderColor="transparent"
+              _hover={{ borderColor: hoverBorderColor, bg: "transparent" }}
+              color={textColor}
+              display="flex"
+              alignItems="center"
+              gap={2}
             >
-              {item.label}
+              <Text color={numberColor} fontWeight="bold">
+                {String(index + 1).padStart(2, "0")}.
+              </Text>
+              <Text>{item.label}</Text>
             </Button>
           ))}
         </HStack>
