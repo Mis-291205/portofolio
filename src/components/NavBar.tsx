@@ -18,7 +18,6 @@ import ColorModeSwitch from "./ColorModeSwitch";
 
 const NavBar = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
-  // base = < 48em (~768px), md = ≥ 48em
 
   const textColor = useColorModeValue("black", "white");
   const numberColor = useColorModeValue("#00987a", "#57dfc2");
@@ -37,11 +36,11 @@ const NavBar = () => {
       spacing={1.5}
       justifyContent="space-between"
       alignItems="center"
+      mt={2}
+      mx={2}
     >
-      {/* Logo */}
       <Image src={logo} boxSize="40px" borderRadius="md" />
 
-      {/* Menu */}
       {isMobile ? (
         <Menu closeOnSelect>
           <MenuButton
