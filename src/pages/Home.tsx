@@ -2,11 +2,9 @@ import { Text, VStack, useColorModeValue } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
-// bungkus Chakra UI component dengan motion
 const MotionText = motion(Text);
 
 const Home = () => {
-  // warna adaptif
   const introColor = useColorModeValue("#00987a", "#57dfc2");
   const nameColor = useColorModeValue("#1a202c", "#cedaf2");
   const taglineColor = useColorModeValue("#2d3748", "#596580");
@@ -20,7 +18,6 @@ const Home = () => {
       ml={{ base: 5, md: 10, lg: 20, xl: 28, "2xl": 32 }}
       mt={{ base: 5, md: 10 }}
     >
-      {/* Intro */}
       <MotionText
         fontSize={{ base: "xl", md: "2xl", xl: "3xl" }}
         color={introColor}
@@ -31,7 +28,6 @@ const Home = () => {
         Hi, my name is
       </MotionText>
 
-      {/* Nama */}
       <MotionText
         fontSize={{
           base: "3xl",
@@ -49,7 +45,6 @@ const Home = () => {
         Michael Ivan Santoso.
       </MotionText>
 
-      {/* Tagline */}
       <MotionText
         fontSize={{
           base: "2xl",
@@ -67,7 +62,6 @@ const Home = () => {
         I transform data into intelligence.
       </MotionText>
 
-      {/* Deskripsi */}
       <MotionText
         fontSize={{ base: "sm", md: "md", xl: "lg" }}
         color={descColor}

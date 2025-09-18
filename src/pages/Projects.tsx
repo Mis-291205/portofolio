@@ -63,7 +63,7 @@ const projects = [
 
 const Projects = () => {
   const boxBorder = useColorModeValue("#00987a", "#57dfc2");
-  const projectColor = useColorModeValue("#2d3748", "#596580");
+  const projectColor = useColorModeValue("#2d3748", "#c9caceff");
   const descColor = useColorModeValue("#4a5568", "gray.400");
   const linkColor = useColorModeValue("#00987a", "teal.400");
   const linkHover = useColorModeValue("#007f66", "teal.600");

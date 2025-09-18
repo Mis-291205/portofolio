@@ -31,7 +31,7 @@ const Footer = () => {
           variant="ghost"
           color={iconColor}
           fontSize={{ base: "26px", md: "32px" }}
-          _hover={{ color: "#0077B5" }} // LinkedIn biru
+          _hover={{ color: "#0077B5" }}
         />
         <IconButton
           as="a"
@@ -42,7 +42,7 @@ const Footer = () => {
           variant="ghost"
           color={iconColor}
           fontSize={{ base: "26px", md: "32px" }}
-          _hover={{ color: "#404650" }} // GitHub hitam
+          _hover={{ color: "#404650" }}
         />
         <IconButton
           as="a"
@@ -53,7 +53,7 @@ const Footer = () => {
           variant="ghost"
           color={iconColor}
           fontSize={{ base: "26px", md: "32px" }}
-          _hover={{ color: "#C13584" }} // Instagram ungu/merah muda
+          _hover={{ color: "#C13584" }}
         />
         <IconButton
           as="a"
@@ -64,7 +64,7 @@ const Footer = () => {
           variant="ghost"
           color={iconColor}
           fontSize={{ base: "26px", md: "32px" }}
-          _hover={{ color: "#25D366" }} // WhatsApp hijau
+          _hover={{ color: "#25D366" }}
         />
         <IconButton
           as="a"
@@ -74,7 +74,7 @@ const Footer = () => {
           variant="ghost"
           color={iconColor}
           fontSize={{ base: "26px", md: "32px" }}
-          _hover={{ color: "#D44638" }} // Email merah
+          _hover={{ color: "#D44638" }}
         />
       </HStack>
     </Box>
