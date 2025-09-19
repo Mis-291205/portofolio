@@ -20,19 +20,19 @@ const projects = [
     name: "CAteriNgz",
     desc: "Simple web development that focuses on selling cuisine for catering using HTML, CSS, and JavaScript with a total of 8 website pages and only using JavaScript for calculating amount, total price, and login/register.",
     link: "https://github.com/Mis-291205/AoL_HCI",
-    images: ["src/assets/cateringz.png"],
+    images: ["/cateringz.png"],
   },
   {
     name: "Deepfake Detector",
     desc: "Streamlit app and mobile app using Android Studio to detect deep-fake images using VGG16 model with dataset from Kaggle for training.",
     link: "https://github.com/Mis-291205/AoL-AI_VGG16",
-    images: ["src/assets/deepfake.png", "src/assets/deepfake2.jpg"],
+    images: ["/deepfake.png", "/deepfake2.jpg"],
   },
   {
     name: "NLP Chatbot-BERT",
     desc: "A chatbot using BERT model with intent classification approach with datasets from Kaggle.",
     link: "https://github.com/migz177/chatbot-bert",
-    images: ["src/assets/chatbot_train.png", "src/assets/chatbot.png"],
+    images: ["/chatbot_train.png", "/chatbot.png"],
   },
   {
     name: "KostLife",
@@ -42,27 +42,19 @@ const projects = [
       "https://github.com/JasonEvan/kostlife-backend",
       "https://www.figma.com/design/rxEjv3IvQ6xUURmfw9PJyS/SE-AOL?node-id=0-1&t=pcARrbGplrsreGy9-1",
     ],
-    images: [
-      "src/assets/kostlife1.png",
-      "src/assets/kostlife2.png",
-      "src/assets/kostlife3.png",
-    ],
+    images: ["/kostlife1.png", "/kostlife2.png", "/kostlife3.png"],
   },
   {
     name: "Waste Detector",
     desc: "Streamlit app and mobile app using Android Studio to detect and categorize waste images using VGG16 model with dataset from Kaggle for training.",
     link: "https://github.com/Mis-291205/AoL-MachineLearning",
-    images: ["src/assets/waste.png", "src/assets/waste2.jpg"],
+    images: ["/waste.png", "/waste2.jpg"],
   },
   {
     name: "Churn Prediction",
     desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers before later using them in the application.",
     link: "https://github.com/Dard1ka/ChurnPredictionApp",
-    images: [
-      "src/assets/churn.png",
-      "src/assets/churn_main.jpg",
-      "src/assets/churn_second.jpg",
-    ],
+    images: ["/churn.png", "/churn_main.jpg", "/churn_second.jpg"],
   },
   {
     name: "Parkinson MobileNet Comparison",
@@ -71,7 +63,7 @@ const projects = [
       "https://github.com/Dard1ka/parkinson-mobilenet-comparison",
       "https://drive.google.com/drive/folders/1Lw_GlFaKSJvVzCAnZ1VRVMkrDOx8T4jq?usp=sharing",
     ],
-    images: ["src/assets/spiral.jpg", "src/assets/wave.jpg"],
+    images: ["/spiral.jpg", "/wave.jpg"],
   },
 ];
 
