@@ -61,6 +61,9 @@ const NavBar = () => {
                 display="flex"
                 alignItems="center"
                 gap={2}
+                _focus={{ bg: "transparent" }}
+                _active={{ bg: "transparent" }}
+                _hover={{ bg: "transparent" }}
               >
                 <Text color={numberColor} fontWeight="bold">
                   {String(index + 1).padStart(2, "0")}.
