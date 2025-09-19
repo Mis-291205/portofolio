@@ -6,7 +6,6 @@ import {
   Link,
   Stack,
   useColorModeValue,
-  HStack,
   Image,
 } from "@chakra-ui/react";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
@@ -153,8 +152,8 @@ const Projects = () => {
                       key={i}
                       src={img}
                       alt={`${proj.name} screenshot ${i + 1}`}
-                      maxH="200px" // batas tinggi gambar
-                      objectFit="contain" // biar tidak ketarik
+                      maxH="200px"
+                      objectFit="contain"
                       borderRadius="md"
                       boxShadow="md"
                     />
@@ -162,7 +161,6 @@ const Projects = () => {
                 </Box>
               )}
 
-              {/* Deskripsi di kanan */}
               <Box flex="1">
                 <Text
                   color={projectColor}
@@ -176,7 +174,6 @@ const Projects = () => {
                   {proj.desc}
                 </Text>
 
-                {/* Link Buttons */}
                 {Array.isArray(proj.link) ? (
                   proj.name === "KostLife" ? (
                     <Stack
