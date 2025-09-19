@@ -6,6 +6,8 @@ import {
   Link,
   Stack,
   useColorModeValue,
+  HStack,
+  Image,
 } from "@chakra-ui/react";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { motion } from "framer-motion";
@@ -19,16 +21,19 @@ const projects = [
     name: "CAteriNgz",
     desc: "Simple web development that focuses on selling cuisine for catering using HTML, CSS, and JavaScript with a total of 8 website pages and only using JavaScript for calculating amount, total price, and login/register.",
     link: "https://github.com/Mis-291205/AoL_HCI",
+    images: ["src/assets/cateringz.png"],
   },
   {
     name: "Deepfake Detector",
     desc: "Streamlit app and mobile app using Android Studio to detect deep-fake images using VGG16 model with dataset from Kaggle for training.",
     link: "https://github.com/Mis-291205/AoL-AI_VGG16",
+    images: ["src/assets/deepfake.png"],
   },
   {
     name: "NLP Chatbot-BERT",
     desc: "A chatbot using BERT model with intent classification approach with datasets from Kaggle.",
     link: "https://github.com/migz177/chatbot-bert",
+    images: ["src/assets/chatbot_train.png", "src/assets/chatbot.png"],
   },
   {
     name: "KostLife",
@@ -38,26 +43,36 @@ const projects = [
       "https://github.com/JasonEvan/kostlife-backend",
       "https://www.figma.com/design/rxEjv3IvQ6xUURmfw9PJyS/SE-AOL?node-id=0-1&t=pcARrbGplrsreGy9-1",
     ],
+    images: [
+      "src/assets/kostlife1.png",
+      "src/assets/kostlife2.png",
+      "src/assets/kostlife3.png",
+    ],
   },
   {
     name: "Waste Detector",
     desc: "Streamlit app and mobile app using Android Studio to detect and categorize waste images using VGG16 model with dataset from Kaggle for training.",
     link: "https://github.com/Mis-291205/AoL-MachineLearning",
-  },
-  {
-    name: "Traffic Light",
-    desc: "This project uses YOLO (Ultralytics) for vehicle detection from YouTube streams/local streams, as well as Fuzzy Logic (scikit-fuzzy) for traffic density analysis.",
-    link: "https://github.com/Dard1ka/TrafficLightAi",
+    images: ["src/assets/waste.png"],
   },
   {
     name: "Churn Prediction",
-    desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input.",
+    desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers before later using them in the application.",
     link: "https://github.com/Dard1ka/ChurnPredictionApp",
+    images: [
+      "src/assets/churn.png",
+      "src/assets/churn_main.jpg",
+      "src/assets/churn_second.jpg",
+    ],
   },
   {
     name: "Parkinson MobileNet Comparison",
-    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices.",
-    link: "https://github.com/Dard1ka/parkinson-mobilenet-comparison",
+    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The image on the left shows the results from the spiral image dataset, while the image on the right shows the results from the wave dataset.",
+    link: [
+      "https://github.com/Dard1ka/parkinson-mobilenet-comparison",
+      "https://drive.google.com/drive/folders/1Lw_GlFaKSJvVzCAnZ1VRVMkrDOx8T4jq?usp=sharing",
+    ],
+    images: ["src/assets/spiral.jpg", "src/assets/wave.jpg"],
   },
 ];
 
@@ -121,73 +136,169 @@ const Projects = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <Text color={projectColor} fontWeight="bold" fontSize="4xl" mb={2}>
-              {proj.name}
-            </Text>
-            <Text mb={4} color={descColor} fontSize="xl">
-              {proj.desc}
-            </Text>
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              spacing={6}
+              align="center"
+            >
+              {proj.images && (
+                <Box
+                  display="flex"
+                  gap={3}
+                  flexWrap="wrap"
+                  justifyContent={{ base: "center", md: "flex-start" }}
+                >
+                  {proj.images.map((img, i) => (
+                    <Image
+                      key={i}
+                      src={img}
+                      alt={`${proj.name} screenshot ${i + 1}`}
+                      maxH="200px" // batas tinggi gambar
+                      objectFit="contain" // biar tidak ketarik
+                      borderRadius="md"
+                      boxShadow="md"
+                    />
+                  ))}
+                </Box>
+              )}
 
-            {Array.isArray(proj.link) ? (
-              <Stack
-                spacing={4}
-                direction={{ base: "column", sm: "row" }}
-                align={{ base: "flex-start", sm: "center" }}
-              >
-                <Link
-                  href={proj.link[0]}
-                  isExternal
-                  fontWeight="medium"
-                  color={linkColor}
-                  fontSize="lg"
-                  display="inline-flex"
-                  alignItems="center"
-                  _hover={{ color: linkHover }}
+              {/* Deskripsi di kanan */}
+              <Box flex="1">
+                <Text
+                  color={projectColor}
+                  fontWeight="bold"
+                  fontSize="4xl"
+                  mb={2}
                 >
-                  Frontend{" "}
-                  <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
-                </Link>
-                <Link
-                  href={proj.link[1]}
-                  isExternal
-                  fontWeight="medium"
-                  color={linkColor}
-                  fontSize="lg"
-                  display="inline-flex"
-                  alignItems="center"
-                  _hover={{ color: linkHover }}
-                >
-                  Backend{" "}
-                  <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
-                </Link>
-                <Link
-                  href={proj.link[2]}
-                  isExternal
-                  fontWeight="medium"
-                  color={linkColor}
-                  fontSize="lg"
-                  display="inline-flex"
-                  alignItems="center"
-                  _hover={{ color: linkHover }}
-                >
-                  UI Design{" "}
-                  <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
-                </Link>
-              </Stack>
-            ) : (
-              <Link
-                href={proj.link}
-                isExternal
-                fontWeight="medium"
-                color={linkColor}
-                fontSize="lg"
-                display="inline-flex"
-                alignItems="center"
-                _hover={{ color: linkHover }}
-              >
-                Detail <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
-              </Link>
-            )}
+                  {proj.name}
+                </Text>
+                <Text mb={4} color={descColor} fontSize="xl">
+                  {proj.desc}
+                </Text>
+
+                {/* Link Buttons */}
+                {Array.isArray(proj.link) ? (
+                  proj.name === "KostLife" ? (
+                    <Stack
+                      spacing={4}
+                      direction={{ base: "column", sm: "row" }}
+                      align={{ base: "flex-start", sm: "center" }}
+                    >
+                      <Link
+                        href={proj.link[0]}
+                        isExternal
+                        fontWeight="medium"
+                        color={linkColor}
+                        fontSize="lg"
+                        display="inline-flex"
+                        alignItems="center"
+                        _hover={{ color: linkHover }}
+                      >
+                        Frontend{" "}
+                        <HiArrowTopRightOnSquare
+                          style={{ marginLeft: "6px" }}
+                        />
+                      </Link>
+                      <Link
+                        href={proj.link[1]}
+                        isExternal
+                        fontWeight="medium"
+                        color={linkColor}
+                        fontSize="lg"
+                        display="inline-flex"
+                        alignItems="center"
+                        _hover={{ color: linkHover }}
+                      >
+                        Backend{" "}
+                        <HiArrowTopRightOnSquare
+                          style={{ marginLeft: "6px" }}
+                        />
+                      </Link>
+                      <Link
+                        href={proj.link[2]}
+                        isExternal
+                        fontWeight="medium"
+                        color={linkColor}
+                        fontSize="lg"
+                        display="inline-flex"
+                        alignItems="center"
+                        _hover={{ color: linkHover }}
+                      >
+                        UI Design{" "}
+                        <HiArrowTopRightOnSquare
+                          style={{ marginLeft: "6px" }}
+                        />
+                      </Link>
+                    </Stack>
+                  ) : proj.name === "Parkinson MobileNet Comparison" ? (
+                    <Stack
+                      spacing={4}
+                      direction={{ base: "column", sm: "row" }}
+                      align={{ base: "flex-start", sm: "center" }}
+                    >
+                      <Link
+                        href={proj.link[0]}
+                        isExternal
+                        fontWeight="medium"
+                        color={linkColor}
+                        fontSize="lg"
+                        display="inline-flex"
+                        alignItems="center"
+                        _hover={{ color: linkHover }}
+                      >
+                        GitHub{" "}
+                        <HiArrowTopRightOnSquare
+                          style={{ marginLeft: "6px" }}
+                        />
+                      </Link>
+                      <Link
+                        href={proj.link[1]}
+                        isExternal
+                        fontWeight="medium"
+                        color={linkColor}
+                        fontSize="lg"
+                        display="inline-flex"
+                        alignItems="center"
+                        _hover={{ color: linkHover }}
+                      >
+                        Drive{" "}
+                        <HiArrowTopRightOnSquare
+                          style={{ marginLeft: "6px" }}
+                        />
+                      </Link>
+                    </Stack>
+                  ) : (
+                    <Link
+                      href={proj.link[0]}
+                      isExternal
+                      fontWeight="medium"
+                      color={linkColor}
+                      fontSize="lg"
+                      display="inline-flex"
+                      alignItems="center"
+                      _hover={{ color: linkHover }}
+                    >
+                      GitHub{" "}
+                      <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
+                    </Link>
+                  )
+                ) : (
+                  <Link
+                    href={proj.link}
+                    isExternal
+                    fontWeight="medium"
+                    color={linkColor}
+                    fontSize="lg"
+                    display="inline-flex"
+                    alignItems="center"
+                    _hover={{ color: linkHover }}
+                  >
+                    GitHub{" "}
+                    <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
+                  </Link>
+                )}
+              </Box>
+            </Stack>
           </MotionBox>
         ))}
       </VStack>
