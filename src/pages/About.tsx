@@ -81,7 +81,6 @@ const About = () => {
         </MotionBox>
       </MotionFlex>
 
-      {/* Education */}
       <Box mb={16}>
         <Heading as="h3" size={{ base: "lg", md: "xl" }} mb={8}>
           Education

@@ -8,7 +8,7 @@ const Home = () => {
   const introColor = useColorModeValue("#00987a", "#57dfc2");
   const nameColor = useColorModeValue("#1a202c", "#cedaf2");
   const taglineColor = useColorModeValue("#2d3748", "#596580");
-  const descColor = useColorModeValue("#4a5568", "#404650");
+  const descColor = useColorModeValue("#4a5568", "gray.400");
   const linkColor = useColorModeValue("#00987a", "#57dfc2");
 
   return (
