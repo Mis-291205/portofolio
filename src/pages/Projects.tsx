@@ -26,7 +26,7 @@ const projects = [
     name: "Deepfake Detector",
     desc: "Streamlit app and mobile app using Android Studio to detect deep-fake images using VGG16 model with dataset from Kaggle for training.",
     link: "https://github.com/Mis-291205/AoL-AI_VGG16",
-    images: ["src/assets/deepfake.png"],
+    images: ["src/assets/deepfake.png", "src/assets/deepfake2.jpg"],
   },
   {
     name: "NLP Chatbot-BERT",
@@ -52,7 +52,7 @@ const projects = [
     name: "Waste Detector",
     desc: "Streamlit app and mobile app using Android Studio to detect and categorize waste images using VGG16 model with dataset from Kaggle for training.",
     link: "https://github.com/Mis-291205/AoL-MachineLearning",
-    images: ["src/assets/waste.png"],
+    images: ["src/assets/waste.png", "src/assets/waste2.jpg"],
   },
   {
     name: "Churn Prediction",
