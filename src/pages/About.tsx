@@ -156,11 +156,11 @@ const About = () => {
           </Text>
           <Text>
             <b>Tools:</b> Ms. Word, Ms. PowerPoint, Ms. Teams, Adobe
-            Illustrator, Figma, Canva, Postman
+            Illustrator, Figma, Canva, Postman, Android Studio
           </Text>
           <Text>
             <b>Programming:</b> C, Python, Java, HTML, CSS, JavaScript, SQL,
-            React
+            React (Typescript), Kotlin, Dart
           </Text>
           <Text>
             <b>Passionate in:</b> Machine Learning and Deep Learning
