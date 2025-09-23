@@ -211,7 +211,7 @@ const Projects = () => {
                   justifyContent={{ base: "center", md: "flex-start" }}
                   alignItems="center"
                   gap={3}
-                  maxW="750px" // supaya tidak melebar terlalu jauh
+                  maxW="750px"
                 >
                   {proj.images.map((img, i) => (
                     <Box
@@ -236,7 +236,6 @@ const Projects = () => {
               )}
 
               <Box flex="1">
-                {/* Nama Project */}
                 <Text
                   color={projectColor}
                   fontWeight="bold"
@@ -246,7 +245,6 @@ const Projects = () => {
                   {proj.name}
                 </Text>
 
-                {/* Tahun */}
                 <Text
                   fontStyle="italic"
                   color={useColorModeValue("gray.600", "gray.400")}
@@ -256,12 +254,10 @@ const Projects = () => {
                   {proj.year}
                 </Text>
 
-                {/* Deskripsi */}
                 <Text mb={4} color={descColor} fontSize="xl">
                   {proj.desc}
                 </Text>
 
-                {/* Teknologi */}
                 <Text
                   mb={3}
                   fontWeight="bold"
@@ -270,7 +266,6 @@ const Projects = () => {
                   Technology used: {proj.tech && proj.tech.join(", ")}
                 </Text>
 
-                {/* Link */}
                 {Array.isArray(proj.link) ? (
                   proj.name === "KostLife" ? (
                     <Stack
