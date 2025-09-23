@@ -118,7 +118,7 @@ const projects = [
     desc: "A C program that implements a slang dictionary called “Boogle” using a Trie (prefix tree) data structure, where users can release new slang words with descriptions, search for specific slang words, view slang words that begin with a certain prefix, and display all slang words stored. These 2 images are screenshots of the code and the display when compiled and run as .exe.",
     link: "https://github.com/Mis-291205/AOL_DataStructure",
     tech: ["Dev C++"],
-    images: ["/ds1.png", "/ds2.png"],
+    images: ["/ds2.png", "/ds1.png"],
   },
   {
     name: "CAteriNgz",
