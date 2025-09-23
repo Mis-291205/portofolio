@@ -19,7 +19,7 @@ const projects = [
   {
     name: "Parkinson MobileNet Comparison",
     year: "2025",
-    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The first shows the results from the spiral image dataset, while the second image shows the results from the wave dataset.",
+    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The first image shows the results from the spiral image dataset, while the second image shows the results from the wave dataset.",
     tech: ["Python", "Google Colab", "Ms. Word"],
     link: [
       "https://github.com/Dard1ka/parkinson-mobilenet-comparison",
