@@ -17,59 +17,130 @@ const MotionSpan = motion.span;
 
 const projects = [
   {
-    name: "CAteriNgz",
-    desc: "Simple web development that focuses on selling cuisine for catering using HTML, CSS, and JavaScript with a total of 8 website pages and only using JavaScript for calculating amount, total price, and login/register.",
-    link: "https://github.com/Mis-291205/AoL_HCI",
-    images: ["/cateringz.png"],
-  },
-  {
-    name: "Deepfake Detector",
-    desc: "Streamlit app and mobile app using Android Studio to detect deep-fake images using VGG16 model with dataset from Kaggle for training.",
-    link: "https://github.com/Mis-291205/AoL-AI_VGG16",
-    images: ["/deepfake.png", "/deepfake2.jpg"],
-  },
-  {
-    name: "NLP Chatbot-BERT",
-    desc: "A chatbot using BERT model with intent classification approach with datasets from Kaggle.",
-    link: "https://github.com/migz177/chatbot-bert",
-    images: ["/chatbot_train.png", "/chatbot.png"],
-  },
-  {
-    name: "KostLife",
-    desc: "A mobile app for assisting users, especially students in planning and scheduling daily activities and helping to manage personal finances. Using React Native Expo as frontend and NextJS + Prisma as backend.",
-    link: [
-      "https://github.com/JasonEvan/kostlife-frontend",
-      "https://github.com/JasonEvan/kostlife-backend",
-      "https://www.figma.com/design/rxEjv3IvQ6xUURmfw9PJyS/SE-AOL?node-id=0-1&t=pcARrbGplrsreGy9-1",
-    ],
-    images: ["/kostlife1.png", "/kostlife2.png", "/kostlife3.png"],
-  },
-  {
-    name: "Waste Detector",
-    desc: "Streamlit app and mobile app using Android Studio to detect and categorize waste images using VGG16 model with dataset from Kaggle for training.",
-    link: "https://github.com/Mis-291205/AoL-MachineLearning",
-    images: ["/waste.png", "/waste2.jpg"],
-  },
-  {
-    name: "Churn Prediction",
-    desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers before later using them in the application.",
-    link: "https://github.com/Dard1ka/ChurnPredictionApp",
-    images: ["/churn.png", "/churn_main.jpg", "/churn_second.jpg"],
-  },
-  {
     name: "Parkinson MobileNet Comparison",
-    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The image on the left shows the results from the spiral image dataset, while the image on the right shows the results from the wave dataset.",
+    year: "2025",
+    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The first shows the results from the spiral image dataset, while the second image shows the results from the wave dataset.",
+    tech: ["Python", "Google Colab", "Ms. Word"],
     link: [
       "https://github.com/Dard1ka/parkinson-mobilenet-comparison",
       "https://drive.google.com/drive/folders/1Lw_GlFaKSJvVzCAnZ1VRVMkrDOx8T4jq?usp=sharing",
     ],
     images: ["/spiral.jpg", "/wave.jpg"],
   },
+  {
+    name: "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa",
+    year: "2025",
+    desc: "A research paper focusing on extractive summarization of Indonesian news articles, comparing the performance of transformer-based models (DistilBERT, IndoBERT, MBERT, and RoBERTa) in terms of accuracy that calculated using ROUGE metric. At that time, I was training the DistilBERT and RoBERTa models. Then, in writing the paper I worked on part of the introduction, part of the methodology, and did the citations.",
+    tech: [
+      "Python",
+      "Google Colab",
+      "Ms. Word",
+      "Ms. Excell",
+      "Mendeley Reference Manager",
+    ],
+    link: [
+      "https://github.com/migz177/ResearchMethod_Summarize",
+      "https://drive.google.com/file/d/1pejSYCq1yHDsf9RrVT-pLP9bM157wY5L/view?usp=drivesdk",
+    ],
+    images: ["/research.png"],
+  },
+  {
+    name: "Churn Prediction",
+    year: "2025",
+    desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers with an accuracy of around 0.89 to 0.9 in several training trials before later using them in the application.",
+    link: "https://github.com/Dard1ka/ChurnPredictionApp",
+    tech: [
+      "Python",
+      "Kaggle",
+      "Google Colab",
+      "Ms. Excell",
+      "Android Studio",
+      "ONNX Runtime",
+    ],
+    images: ["/churn.jpg", "/churn_main.jpg", "/churn_second.jpg"],
+  },
+  {
+    name: '"Chatbot University", NLP Chatbot-BERT',
+    year: "2025",
+    desc: "A chatbot using BERT model with intent classification approach with datasets from Kaggle. The chatbot uses a transformer-based model for intent classification, ensuring relevant responses, and includes fallback handling when user input is unclear. Overall, it serves as a simple interactive tool to improve access to university information and enhance student support.",
+    link: "https://github.com/migz177/chatbot-bert",
+    tech: ["Python", "Google Colab", "Kaggle"],
+    images: ["/chatbot_train.png", "/chatbot.png"],
+  },
+  {
+    name: "KostLife",
+    year: "2025",
+    desc: "A mobile app for assisting users, especially students in planning and scheduling daily activities and helping to manage personal finances. Using React Native Expo as frontend and NextJS + Prisma as backend.",
+    link: [
+      "https://github.com/JasonEvan/kostlife-frontend",
+      "https://github.com/JasonEvan/kostlife-backend",
+      "https://www.figma.com/design/rxEjv3IvQ6xUURmfw9PJyS/SE-AOL?node-id=0-1&t=pcARrbGplrsreGy9-1",
+    ],
+    tech: [
+      "React Native Expo",
+      "NextJS",
+      "Expo Go",
+      "Figma",
+      "Git",
+      "Prisma",
+      "Supabase",
+      "iOS Simulator",
+    ],
+    images: ["/kostlife1.png", "/kostlife2.png", "/kostlife3.png"],
+  },
+  {
+    name: "Waste Detector",
+    year: "2025",
+    desc: "Streamlit app and mobile app using Android Studio to detect and categorize waste images using VGG16 model with dataset from Kaggle for training. At that time, I was training the VGG16 models, designed Streamlit, evaluated the model results, and created a mobile version using Android Studio.",
+    link: "https://github.com/Mis-291205/AoL-MachineLearning",
+    tech: ["Python", "Google Colab", "Kaggle", "Streamlit", "Android Studio"],
+    images: ["/waste.png", "/waste2.jpg"],
+  },
+  {
+    name: "Deepfake Detector",
+    year: "2024",
+    desc: "Streamlit app and mobile app using Android Studio to detect deep-fake images using VGG16 model with dataset from Kaggle for training. At that time, I was training the VGG16 models and created a mobile version using Android Studio.",
+    link: "https://github.com/Mis-291205/AoL-AI_VGG16",
+    tech: ["Python", "Google Colab", "Kaggle", "Streamlit", "Android Studio"],
+    images: ["/deepfake.png", "/deepfake2.jpg"],
+  },
+  {
+    name: "Computer Network",
+    year: "2024",
+    desc: "A simulation of network circuit design on 3 floors of the building, including: devices used, networking media types, media length used, IP addressing and subnetting, routing, and application layer using Cisco Packet Tracer.",
+    link: "https://github.com/Mis-291205/AoL-ComputerNetwork",
+    tech: ["Cisco Packet Tracer"],
+    images: ["/compnet1.png", "/compnet2.png"],
+  },
+  {
+    name: "Data Structure",
+    year: "2024",
+    desc: "A C program that implements a slang dictionary called “Boogle” using a Trie (prefix tree) data structure, where users can release new slang words with descriptions, search for specific slang words, view slang words that begin with a certain prefix, and display all slang words stored. These 2 images are screenshots of the code and the display when compiled and run as .exe.",
+    link: "https://github.com/Mis-291205/AOL_DataStructure",
+    tech: ["Dev C++"],
+    images: ["/ds1.png", "/ds2.png"],
+  },
+  {
+    name: "CAteriNgz",
+    year: "2024",
+    desc: "Simple web development that focuses on selling cuisine for catering using HTML, CSS, and JavaScript with a total of 8 website pages and only using JavaScript for calculating amount, total price, and login/register. This is a screenshot of the website's home page.",
+    link: "https://github.com/Mis-291205/AoL_HCI",
+    tech: ["Figma", "HTML", "CSS", "JavaScript"],
+    images: ["/cateringz.png"],
+  },
+  {
+    name: "Algorithm and Programming",
+    year: "2023",
+    desc: "A C program that is a menu-driven data management system for a CSV file that stores housing information. The program provides several options: display, search, sort, and export data while it keeps running in a loop until the user selects option 5 to exit.These 2 images are screenshots of the code and the display when compiled and run as .exe.",
+    link: "https://github.com/Mis-291205/AOL_AlgorithmAndProgramming",
+    tech: ["Dev C++"],
+    images: ["/alprog1.png", "/alprog2.png"],
+  },
 ];
 
 const Projects = () => {
   const boxBorder = useColorModeValue("#00987a", "#57dfc2");
-  const projectColor = useColorModeValue("#2d3748", "#c9caceff");
+  const projectColor = useColorModeValue("black", "white");
   const descColor = useColorModeValue("#4a5568", "gray.400");
   const linkColor = useColorModeValue("#00987a", "teal.400");
   const linkHover = useColorModeValue("#007f66", "teal.600");
@@ -135,37 +206,71 @@ const Projects = () => {
               {proj.images && (
                 <Box
                   display="flex"
-                  gap={3}
+                  flexDirection="row"
                   flexWrap="wrap"
                   justifyContent={{ base: "center", md: "flex-start" }}
+                  alignItems="center"
+                  gap={3}
+                  maxW="750px" // supaya tidak melebar terlalu jauh
                 >
                   {proj.images.map((img, i) => (
-                    <Image
+                    <Box
                       key={i}
-                      src={img}
-                      alt={`${proj.name} screenshot ${i + 1}`}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
                       maxH="200px"
-                      objectFit="contain"
-                      borderRadius="md"
-                      boxShadow="md"
-                    />
+                      flex="1 1 auto"
+                    >
+                      <Image
+                        src={img}
+                        alt={`${proj.name} screenshot ${i + 1}`}
+                        maxH="200px"
+                        objectFit="contain"
+                        borderRadius="md"
+                        boxShadow="md"
+                      />
+                    </Box>
                   ))}
                 </Box>
               )}
 
               <Box flex="1">
+                {/* Nama Project */}
                 <Text
                   color={projectColor}
                   fontWeight="bold"
-                  fontSize="4xl"
-                  mb={2}
+                  fontSize="3xl"
+                  mb={1}
                 >
                   {proj.name}
                 </Text>
+
+                {/* Tahun */}
+                <Text
+                  fontStyle="italic"
+                  color={useColorModeValue("gray.600", "gray.400")}
+                  fontSize="lg"
+                  mb={3}
+                >
+                  {proj.year}
+                </Text>
+
+                {/* Deskripsi */}
                 <Text mb={4} color={descColor} fontSize="xl">
                   {proj.desc}
                 </Text>
 
+                {/* Teknologi */}
+                <Text
+                  mb={3}
+                  fontWeight="bold"
+                  color={useColorModeValue("#2d3748", "#c9caceff")}
+                >
+                  Technology used: {proj.tech && proj.tech.join(", ")}
+                </Text>
+
+                {/* Link */}
                 {Array.isArray(proj.link) ? (
                   proj.name === "KostLife" ? (
                     <Stack
