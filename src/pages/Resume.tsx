@@ -36,7 +36,7 @@ const Resume = () => {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       >
         <iframe
-          src="/Michael Ivan - CV - Resume.pdf"
+          src="/Michael Ivan - CV.pdf"
           width="100%"
           height="100%"
           style={{ border: "none" }}
@@ -45,7 +45,7 @@ const Resume = () => {
       </MotionBox>
 
       <Link
-        href="/Michael Ivan - CV - Resume.pdf"
+        href="/Michael Ivan - CV.pdf"
         download
         _hover={{ textDecoration: "none" }}
       >
