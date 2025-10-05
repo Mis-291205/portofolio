@@ -48,7 +48,10 @@ const projects = [
     name: "Churn Prediction",
     year: "2025",
     desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers with an accuracy of around 0.89 to 0.9 in several training trials before later using them in the application.",
-    link: "https://github.com/Dard1ka/ChurnPredictionApp",
+    link: [
+      "https://github.com/Dard1ka/ChurnPredictionApp",
+      "https://drive.google.com/drive/folders/12MpCWgxUu-N13IqpCOZWlQWW7urLWtLY?usp=sharing",
+    ],
     tech: [
       "Python",
       "Kaggle",
@@ -320,7 +323,8 @@ const Projects = () => {
                       </Link>
                     </Stack>
                   ) : proj.name === "Parkinson MobileNet Comparison" ||
-                    "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ? (
+                    "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ||
+                    "Churn Prediction" ? (
                     <Stack
                       spacing={4}
                       direction={{ base: "column", sm: "row" }}
