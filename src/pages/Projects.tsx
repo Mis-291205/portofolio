@@ -50,7 +50,7 @@ const projects = [
     desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers with an accuracy of around 0.89 to 0.9 in several training trials before later using them in the application.",
     link: [
       "https://github.com/Dard1ka/ChurnPredictionApp",
-      "https://drive.google.com/drive/folders/12MpCWgxUu-N13IqpCOZWlQWW7urLWtLY?usp=sharing",
+      "https://colab.research.google.com/drive/1djGjgmFlPxcZqVYv8r3XV5Bs0QjCcJne",
     ],
     tech: [
       "Python",
