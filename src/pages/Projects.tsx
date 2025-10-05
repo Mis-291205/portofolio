@@ -319,7 +319,8 @@ const Projects = () => {
                         />
                       </Link>
                     </Stack>
-                  ) : proj.name === "Parkinson MobileNet Comparison" ? (
+                  ) : proj.name === "Parkinson MobileNet Comparison" ||
+                    "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ? (
                     <Stack
                       spacing={4}
                       direction={{ base: "column", sm: "row" }}
