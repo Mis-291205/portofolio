@@ -40,7 +40,7 @@ const projects = [
     ],
     link: [
       "https://github.com/migz177/ResearchMethod_Summarize",
-      "https://drive.google.com/file/d/1pejSYCq1yHDsf9RrVT-pLP9bM157wY5L/view?usp=drivesdk",
+      "https://doi.org/10.1016/j.procs.2025.09.050",
     ],
     images: ["/research.png"],
   },
@@ -322,59 +322,52 @@ const Projects = () => {
                         />
                       </Link>
                     </Stack>
-                  ) : proj.name === "Parkinson MobileNet Comparison" ||
-                    "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ||
-                    "Churn Prediction" ? (
-                    <Stack
-                      spacing={4}
-                      direction={{ base: "column", sm: "row" }}
-                      align={{ base: "flex-start", sm: "center" }}
-                    >
-                      <Link
-                        href={proj.link[0]}
-                        isExternal
-                        fontWeight="medium"
-                        color={linkColor}
-                        fontSize="lg"
-                        display="inline-flex"
-                        alignItems="center"
-                        _hover={{ color: linkHover }}
-                      >
-                        GitHub{" "}
-                        <HiArrowTopRightOnSquare
-                          style={{ marginLeft: "6px" }}
-                        />
-                      </Link>
-                      <Link
-                        href={proj.link[1]}
-                        isExternal
-                        fontWeight="medium"
-                        color={linkColor}
-                        fontSize="lg"
-                        display="inline-flex"
-                        alignItems="center"
-                        _hover={{ color: linkHover }}
-                      >
-                        Drive{" "}
-                        <HiArrowTopRightOnSquare
-                          style={{ marginLeft: "6px" }}
-                        />
-                      </Link>
-                    </Stack>
                   ) : (
-                    <Link
-                      href={proj.link[0]}
-                      isExternal
-                      fontWeight="medium"
-                      color={linkColor}
-                      fontSize="lg"
-                      display="inline-flex"
-                      alignItems="center"
-                      _hover={{ color: linkHover }}
-                    >
-                      GitHub{" "}
-                      <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
-                    </Link>
+                    (proj.name === "Parkinson MobileNet Comparison" ||
+                      proj.name ===
+                        "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ||
+                      proj.name === "Churn Prediction") && (
+                      <Stack
+                        spacing={4}
+                        direction={{ base: "column", sm: "row" }}
+                        align={{ base: "flex-start", sm: "center" }}
+                      >
+                        <Link
+                          href={proj.link[0]}
+                          isExternal
+                          fontWeight="medium"
+                          color={linkColor}
+                          fontSize="lg"
+                          display="inline-flex"
+                          alignItems="center"
+                          _hover={{ color: linkHover }}
+                        >
+                          GitHub{" "}
+                          <HiArrowTopRightOnSquare
+                            style={{ marginLeft: "6px" }}
+                          />
+                        </Link>
+
+                        <Link
+                          href={proj.link[1]}
+                          isExternal
+                          fontWeight="medium"
+                          color={linkColor}
+                          fontSize="lg"
+                          display="inline-flex"
+                          alignItems="center"
+                          _hover={{ color: linkHover }}
+                        >
+                          {proj.name ===
+                          "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa"
+                            ? "Paper"
+                            : "Drive"}{" "}
+                          <HiArrowTopRightOnSquare
+                            style={{ marginLeft: "6px" }}
+                          />
+                        </Link>
+                      </Stack>
+                    )
                   )
                 ) : (
                   <Link
