@@ -77,9 +77,12 @@ const Home = () => {
         transition={{ duration: 1, delay: 1.5 }}
       >
         I am a Computer Science student specializing in Intelligence Systems,
-        including Machine Learning, Deep Learning, etc. Currently, I am still
-        focused on my studies and am looking for an internship to develop myself
-        for the future. For more information about me, visit the{" "}
+        with experience in developing AI-powered applications, company
+        internship, research, and many collaborative projects. Currently, I am
+        focused expanding my knowledge and hands-on experience in scalable AI
+        systems and modern technologies to continuously improve myself and build
+        more impactful AI-driven solutions in the future. For more information
+        about me, visit the{" "}
         <Text
           as={RouterLink}
           to="/projects"

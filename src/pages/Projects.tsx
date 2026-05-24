@@ -17,6 +17,51 @@ const MotionSpan = motion.span;
 
 const projects = [
   {
+    name: "Illegal Parking Detection System",
+    year: "2026",
+    desc: "Developing an AI-powered Illegal Parking Detection System for pre-thesis research at BINUS University, integrating computer vision, real-time tracking, and an interactive monitoring dashboard to detect vehicles parked in restricted areas and generate automated alerts. Contributed to training the YOLOv8 warning triangle detection model, optimizing and debugging multi-model integration within the system pipeline, and assisting in pre-thesis technical documentation and reporting.",
+    tech: ["Python", "React", "WebSocket", "Edge-TTS", "Google Colab"],
+    link: "https://github.com/Dard1ka/Ai-Ilegal-Parking",
+    images: ["/i_parking1.jpeg", "/i_parking2.jpeg"],
+  },
+  {
+    name: "Number Memory AI",
+    year: "2026",
+    desc: "Number Memory AI is an AI-powered game that combines number memory challenges with Speech-to-Text technology to improve English number pronunciation and memory skills. Players memorize sequences of numbers and recite them through voice input, while the system processes and evaluates the responses in real time using a fine-tuned AI model specialized for number recognition. My contributions included UI development, ideation, system flow and rule optimization, and debugging to improve both gameplay experience and system performance.",
+    tech: ["Python", "HTML/CSS/JavaScript", "Speech-to-Text (STT)"],
+    link: "https://github.com/Dard1ka/NumberMemoryAi",
+    images: ["/num_mem1.jpeg", "/num_mem2.jpeg"],
+  },
+  {
+    name: "Intelligent Traffic Control System (ITCS)",
+    year: "2025",
+    desc: "This project is an AI-based adaptive traffic light optimization system that utilizes vehicle detection, PCU (Passenger Car Unit) calculation, and fuzzy logic to dynamically adjust traffic signal durations. The system integrates computer vision models with a FastAPI backend for AI inference and decision-making, a React-based dashboard for monitoring and visualization, and IoT microcontrollers for real-time traffic light control. I contributed by training YOLO models for vehicle detection and developing the web dashboard using React.",
+    tech: ["Python", "React", "IoT Microcontroller", "Fuzzy Logic"],
+    link: [
+      "https://github.com/Dard1ka/ITCS_Concept_React_IOT_FASTAPI/",
+      "https://www.youtube.com/watch?v=WSv8LOs6RgM",
+    ],
+    images: ["/itcs1.jpeg", "/itcs2.jpeg"],
+  },
+  {
+    name: "Image Super-Resolution: SRResNet vs ESRGAN-Lite",
+    year: "2025",
+    desc: "Developed a deep learning-based Image Super-Resolution system comparing SRResNet and ESRGAN-Lite architectures for 4× image upscaling, focusing on the trade-off between reconstruction accuracy and perceptual image quality using the DIV2K dataset. Contributed to dataset collection and preparation, training both super-resolution models, and assisting in the development of the research report and evaluation analysis.",
+    tech: [
+      "Python",
+      "SRResNet",
+      "ESRGAN-Lite",
+      "Streamlit",
+      "Google Colab",
+      "Jupyter Notebook",
+    ],
+    link: [
+      "https://github.com/yongkytristan/Image_UpScaller",
+      "https://drive.google.com/file/d/1DczKoSFMnDvccMWdwGZAPiS22ob5pJac/view?usp=sharing",
+    ],
+    images: ["/upscaler1.png", "/upscaler2.png"],
+  },
+  {
     name: "Parkinson MobileNet Comparison",
     year: "2025",
     desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The first image shows the results from the spiral image dataset, while the second image shows the results from the wave dataset.",
@@ -326,7 +371,11 @@ const Projects = () => {
                     (proj.name === "Parkinson MobileNet Comparison" ||
                       proj.name ===
                         "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ||
-                      proj.name === "Churn Prediction") && (
+                      proj.name === "Churn Prediction" ||
+                      proj.name ===
+                        "Image Super-Resolution: SRResNet vs ESRGAN-Lite" ||
+                      proj.name ===
+                        "Intelligent Traffic Control System (ITCS)") && (
                       <Stack
                         spacing={4}
                         direction={{ base: "column", sm: "row" }}
@@ -361,7 +410,10 @@ const Projects = () => {
                           {proj.name ===
                           "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa"
                             ? "Paper"
-                            : "Drive"}{" "}
+                            : proj.name ===
+                                "Intelligent Traffic Control System (ITCS)"
+                              ? "Demo"
+                              : "Drive"}{" "}
                           <HiArrowTopRightOnSquare
                             style={{ marginLeft: "6px" }}
                           />

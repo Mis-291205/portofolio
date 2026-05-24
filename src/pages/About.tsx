@@ -74,8 +74,12 @@ const About = () => {
           </Heading>
           <Text color={textColor} fontSize="lg" maxW="600px">
             I am Michael Ivan Santoso, a Computer Science student at BINUS
-            University with a passion for Intelligence Systems, especially in
-            machine learning and deep learning. My goal is to create digital
+            University with a passion in AI Engineering and Data Systems,
+            experienced in company internship, competition, collaborative
+            projects, and AI-based research. Interested in developing scalable
+            AI systems and data-driven solutions, with strong problem-solving
+            abilities, effective teamwork, and a commitment to continuous
+            learning in a rapidly evolving field. My goal is to create digital
             solutions that bring real impact.
           </Text>
         </MotionBox>
@@ -155,15 +159,21 @@ const About = () => {
             <b>Languages:</b> Bahasa Indonesia (Native), English
           </Text>
           <Text>
-            <b>Tools:</b> Ms. Word, Ms. PowerPoint, Ms. Teams, Adobe
-            Illustrator, Figma, Canva, Postman, Android Studio
-          </Text>
-          <Text>
             <b>Programming:</b> C, Python, Java, HTML, CSS, JavaScript, SQL,
             React (Typescript), Kotlin, Dart
           </Text>
           <Text>
-            <b>Passionate in:</b> Machine Learning and Deep Learning
+            <b>Tools & Platforms:</b> Visual Studio Code, Docker, Linux Server &
+            SSH (MobaXterm), Jupyter Notebook, Google Colab, Postman, JMeter,
+            Android Studio, Figma, Canva, Adobe Illustrator, Eclipse, Dev C++,
+            Microsoft Word, Microsoft PowerPoint, Microsoft Teams
+          </Text>
+          <Text>
+            <b>Frameworks & Technologies:</b> FastAPI, WebSocket, Webhook,
+            Apache Kafka, Nginx, Gradio, Streamlit, vLLM
+          </Text>
+          <Text>
+            <b>Passionate in:</b> AI Engineering and Data Systems
           </Text>
         </VStack>
       </MotionBox>
