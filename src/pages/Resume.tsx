@@ -1,17 +1,22 @@
-import { Box, Heading, Button, Link } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import PdfCanvasViewer from "../components/PdfCanvasViewer";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
-const MotionButton = motion(Button);
 
 const Resume = () => {
   return (
-    <Box textAlign="center" py={8} px={{ base: 4, md: 12, lg: 28 }}>
+    <Box
+      textAlign="center"
+      py={{ base: 8, md: 12 }}
+      px={{ base: 4, md: 12, lg: 28 }}
+      pb={{ base: 20, md: 24 }}
+    >
       <MotionHeading
         as="h2"
         size="2xl"
-        mb={8}
+        mb={{ base: 8, md: 10 }}
         mt={4}
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -21,47 +26,19 @@ const Resume = () => {
       </MotionHeading>
 
       <MotionBox
-        border="1px solid"
-        borderColor="gray.300"
-        borderRadius="xl"
-        overflow="hidden"
-        w={{ base: "100%", md: "85%", lg: "75%" }}
-        h={{ base: "600px", md: "800px", lg: "900px" }}
+        w={{ base: "100%", lg: "82%" }}
         mx="auto"
         mb={8}
-        boxShadow="lg"
-        bg="white"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       >
-        <iframe
+        <PdfCanvasViewer
           src="/Michael-Ivan-CV.pdf"
-          width="100%"
-          height="100%"
-          style={{ border: "none" }}
-          title="Resume"
+          title="Michael Ivan Santoso CV"
+          height={{ base: "720px", lg: "900px" }}
         />
       </MotionBox>
-
-      <Link
-        href="/Michael-Ivan-CV.pdf"
-        download
-        _hover={{ textDecoration: "none" }}
-      >
-        <MotionButton
-          colorScheme="teal"
-          size="lg"
-          mb={7}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          Download File
-        </MotionButton>
-      </Link>
     </Box>
   );
 };

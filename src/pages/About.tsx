@@ -20,13 +20,13 @@ const About = () => {
   const items = [
     {
       title: "BINUS University",
-      period: "Sep 2023 – Now",
+      period: "Sep 2023 - Now",
       desc: "Student of Computer Science",
-      highlight: "GPA 3.98 / 4.00",
+      highlight: "GPA 3.96 / 4.00",
     },
     {
       title: "Loyola College Senior High School, Semarang",
-      period: "Jul 2020 – Jun 2023",
+      period: "Jul 2020 - Jun 2023",
       desc: "Natural Science Major",
       highlight: "Magna Cumlaude",
     },
@@ -44,27 +44,51 @@ const About = () => {
         transition={{ duration: 0.7 }}
       >
         <MotionBox
+          role="group"
+          position="relative"
           borderRadius="full"
-          overflow="hidden"
           boxSize={{ base: "200px", md: "250px" }}
-          border="6px solid"
-          borderColor={accentColor}
-          boxShadow="lg"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.04, rotate: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <Image
-            src={profilePic}
-            alt="Profile"
-            objectFit="cover"
-            w="100%"
-            h="100%"
+          <Box
+            position="absolute"
+            inset="-10px"
+            borderRadius="full"
+            bgGradient={`linear(135deg, ${accentColor}, transparent, ${accentColor})`}
+            opacity={0.35}
+            filter="blur(16px)"
+            transition="opacity 240ms ease"
+            _groupHover={{ opacity: 0.65 }}
           />
+          <Box
+            position="relative"
+            borderRadius="full"
+            overflow="hidden"
+            boxSize="100%"
+            border="6px solid"
+            borderColor={accentColor}
+            boxShadow="lg"
+          >
+            <Image
+              src={profilePic}
+              alt="Profile"
+              objectFit="cover"
+              w="100%"
+              h="100%"
+              transition="transform 700ms cubic-bezier(.22,1,.36,1), filter 300ms ease"
+              _groupHover={{
+                transform: "scale(1.08)",
+                filter: "saturate(1.08)",
+              }}
+            />
+          </Box>
         </MotionBox>
 
         <MotionBox
-          ml="40px"
+          ml={{ base: 0, md: "40px" }}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

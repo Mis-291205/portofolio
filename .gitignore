@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Local tool/temp output
+.codex-*
+.codex/
+.codex-screenshots/
+.codex-chrome-profile/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

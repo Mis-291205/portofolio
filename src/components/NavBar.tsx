@@ -11,17 +11,25 @@ import {
   useColorModeValue,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 
 const NavBar = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const location = useLocation();
 
   const textColor = useColorModeValue("black", "white");
   const numberColor = useColorModeValue("#00987a", "#57dfc2");
   const hoverBorderColor = useColorModeValue("#00987a", "#57dfc2");
+  const activeBg = useColorModeValue("teal.50", "whiteAlpha.100");
+  const hoverBg = useColorModeValue("rgba(0,152,122,0.08)", "whiteAlpha.100");
+  const navBg = useColorModeValue(
+    "rgba(255,255,255,0.78)",
+    "rgba(16,18,20,0.72)"
+  );
+  const navBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.100");
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -32,12 +40,23 @@ const NavBar = () => {
 
   return (
     <HStack
-      padding="10px"
+      as="nav"
+      position="sticky"
+      top={0}
+      zIndex={20}
+      padding={{ base: "10px", md: "12px 18px" }}
       spacing={1.5}
       justifyContent="space-between"
       alignItems="center"
-      mt={2}
-      mx={2}
+      m={{ base: 2, md: 3 }}
+      mb={0}
+      w={{ base: "calc(100% - 16px)", md: "calc(100% - 24px)" }}
+      border="1px solid"
+      borderColor={navBorder}
+      borderRadius="xl"
+      bg={navBg}
+      backdropFilter="blur(16px)"
+      boxShadow="0 18px 60px -48px rgba(87, 223, 194, 0.75)"
     >
       <Image src={logo} boxSize="40px" borderRadius="md" />
 
@@ -63,7 +82,7 @@ const NavBar = () => {
                 gap={2}
                 _focus={{ bg: "transparent" }}
                 _active={{ bg: "transparent" }}
-                _hover={{ bg: "transparent" }}
+                _hover={{ bg: activeBg }}
               >
                 <Text color={numberColor} fontWeight="bold">
                   {String(index + 1).padStart(2, "0")}.
@@ -75,26 +94,41 @@ const NavBar = () => {
         </Menu>
       ) : (
         <HStack spacing={2} ml="auto" mr={2}>
-          {navItems.map((item, index) => (
-            <Button
-              key={item.to}
-              as={RouterLink}
-              to={item.to}
-              size="sm"
-              variant="outline"
-              borderColor="transparent"
-              _hover={{ borderColor: hoverBorderColor, bg: "transparent" }}
-              color={textColor}
-              display="flex"
-              alignItems="center"
-              gap={2}
-            >
-              <Text color={numberColor} fontWeight="bold">
-                {String(index + 1).padStart(2, "0")}.
-              </Text>
-              <Text>{item.label}</Text>
-            </Button>
-          ))}
+          {navItems.map((item, index) => {
+            const isActive = location.pathname === item.to;
+
+            return (
+              <Button
+                key={item.to}
+                as={RouterLink}
+                to={item.to}
+                className={
+                  isActive ? "nav-draw-link nav-draw-link-active" : "nav-draw-link"
+                }
+                size="sm"
+                variant="outline"
+                position="relative"
+                overflow="hidden"
+                sx={{ "--nav-border-color": hoverBorderColor }}
+                borderColor="transparent"
+                bg={isActive ? activeBg : "transparent"}
+                _hover={{
+                  bg: hoverBg,
+                  borderColor: "transparent",
+                }}
+                color={textColor}
+                display="flex"
+                alignItems="center"
+                gap={2}
+                transition="background 180ms ease, transform 180ms ease"
+              >
+                <Text color={numberColor} fontWeight="bold">
+                  {String(index + 1).padStart(2, "0")}.
+                </Text>
+                <Text>{item.label}</Text>
+              </Button>
+            );
+          })}
         </HStack>
       )}
 

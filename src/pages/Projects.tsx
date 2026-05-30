@@ -1,446 +1,188 @@
 import {
   Box,
   Heading,
+  SimpleGrid,
+  Stack,
   Text,
   VStack,
-  Link,
-  Stack,
   useColorModeValue,
-  Image,
 } from "@chakra-ui/react";
-import { HiArrowTopRightOnSquare } from "react-icons/hi2";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import ProjectCard from "../components/ProjectCard";
+import { projects } from "../data/projects";
 
 const MotionBox = motion(Box);
-const MotionSpan = motion.span;
-
-const projects = [
-  {
-    name: "Illegal Parking Detection System",
-    year: "2026",
-    desc: "Developing an AI-powered Illegal Parking Detection System for pre-thesis research at BINUS University, integrating computer vision, real-time tracking, and an interactive monitoring dashboard to detect vehicles parked in restricted areas and generate automated alerts. Contributed to training the YOLOv8 warning triangle detection model, optimizing and debugging multi-model integration within the system pipeline, and assisting in pre-thesis technical documentation and reporting.",
-    tech: ["Python", "React", "WebSocket", "Edge-TTS", "Google Colab"],
-    link: "https://github.com/Dard1ka/Ai-Ilegal-Parking",
-    images: ["/i_parking1.jpeg", "/i_parking2.jpeg"],
-  },
-  {
-    name: "Number Memory AI",
-    year: "2026",
-    desc: "Number Memory AI is an AI-powered game that combines number memory challenges with Speech-to-Text technology to improve English number pronunciation and memory skills. Players memorize sequences of numbers and recite them through voice input, while the system processes and evaluates the responses in real time using a fine-tuned AI model specialized for number recognition. My contributions included UI development, ideation, system flow and rule optimization, and debugging to improve both gameplay experience and system performance.",
-    tech: ["Python", "HTML/CSS/JavaScript", "Speech-to-Text (STT)"],
-    link: "https://github.com/Dard1ka/NumberMemoryAi",
-    images: ["/num_mem1.jpeg", "/num_mem2.jpeg"],
-  },
-  {
-    name: "Intelligent Traffic Control System (ITCS)",
-    year: "2025",
-    desc: "This project is an AI-based adaptive traffic light optimization system that utilizes vehicle detection, PCU (Passenger Car Unit) calculation, and fuzzy logic to dynamically adjust traffic signal durations. The system integrates computer vision models with a FastAPI backend for AI inference and decision-making, a React-based dashboard for monitoring and visualization, and IoT microcontrollers for real-time traffic light control. I contributed by training YOLO models for vehicle detection and developing the web dashboard using React.",
-    tech: ["Python", "React", "IoT Microcontroller", "Fuzzy Logic"],
-    link: [
-      "https://github.com/Dard1ka/ITCS_Concept_React_IOT_FASTAPI/",
-      "https://www.youtube.com/watch?v=WSv8LOs6RgM",
-    ],
-    images: ["/itcs1.jpeg", "/itcs2.jpeg"],
-  },
-  {
-    name: "Image Super-Resolution: SRResNet vs ESRGAN-Lite",
-    year: "2025",
-    desc: "Developed a deep learning-based Image Super-Resolution system comparing SRResNet and ESRGAN-Lite architectures for 4× image upscaling, focusing on the trade-off between reconstruction accuracy and perceptual image quality using the DIV2K dataset. Contributed to dataset collection and preparation, training both super-resolution models, and assisting in the development of the research report and evaluation analysis.",
-    tech: [
-      "Python",
-      "SRResNet",
-      "ESRGAN-Lite",
-      "Streamlit",
-      "Google Colab",
-      "Jupyter Notebook",
-    ],
-    link: [
-      "https://github.com/yongkytristan/Image_UpScaller",
-      "https://drive.google.com/file/d/1DczKoSFMnDvccMWdwGZAPiS22ob5pJac/view?usp=sharing",
-    ],
-    images: ["/upscaler1.png", "/upscaler2.png"],
-  },
-  {
-    name: "Parkinson MobileNet Comparison",
-    year: "2025",
-    desc: "Spiral and Wave image-based Parkinson's detection experiment using a lightweight deep learning model. Comparing MobileNetV2, custom MobileNetV2, and MobileNetV3-Small to evaluate accuracy, computational efficiency, and potential implementation on mobile/edge devices. I am focusing on writing a paper for Gemastik 2025, which will analyze and compare the results of each model. The first image shows the results from the spiral image dataset, while the second image shows the results from the wave dataset.",
-    tech: ["Python", "Google Colab", "Ms. Word"],
-    link: [
-      "https://github.com/Dard1ka/parkinson-mobilenet-comparison",
-      "https://drive.google.com/drive/folders/1Lw_GlFaKSJvVzCAnZ1VRVMkrDOx8T4jq?usp=sharing",
-    ],
-    images: ["/spiral.jpg", "/wave.jpg"],
-  },
-  {
-    name: "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa",
-    year: "2025",
-    desc: "A research paper focusing on extractive summarization of Indonesian news articles, comparing the performance of transformer-based models (DistilBERT, IndoBERT, MBERT, and RoBERTa) in terms of accuracy that calculated using ROUGE metric. At that time, I was training the DistilBERT and RoBERTa models. Then, in writing the paper I worked on part of the introduction, part of the methodology, and did the citations.",
-    tech: [
-      "Python",
-      "Google Colab",
-      "Ms. Word",
-      "Ms. Excell",
-      "Mendeley Reference Manager",
-    ],
-    link: [
-      "https://github.com/migz177/ResearchMethod_Summarize",
-      "https://doi.org/10.1016/j.procs.2025.09.050",
-    ],
-    images: ["/research.png"],
-  },
-  {
-    name: "Churn Prediction",
-    year: "2025",
-    desc: "An Android application that predicts whether a customer will churn (unsubscribe) or not, based on customer data input. I focused on training traditional machine learning models until I found that the best approach for this dataset was bagging classifiers with an accuracy of around 0.89 to 0.9 in several training trials before later using them in the application.",
-    link: [
-      "https://github.com/Dard1ka/ChurnPredictionApp",
-      "https://colab.research.google.com/drive/1djGjgmFlPxcZqVYv8r3XV5Bs0QjCcJne",
-    ],
-    tech: [
-      "Python",
-      "Kaggle",
-      "Google Colab",
-      "Ms. Excell",
-      "Android Studio",
-      "ONNX Runtime",
-    ],
-    images: ["/churn.jpg", "/churn_main.jpg", "/churn_second.jpg"],
-  },
-  {
-    name: '"Chatbot University", NLP Chatbot-BERT',
-    year: "2025",
-    desc: "A chatbot using BERT model with intent classification approach with datasets from Kaggle. The chatbot uses a transformer-based model for intent classification, ensuring relevant responses, and includes fallback handling when user input is unclear. Overall, it serves as a simple interactive tool to improve access to university information and enhance student support.",
-    link: "https://github.com/migz177/chatbot-bert",
-    tech: ["Python", "Google Colab", "Kaggle"],
-    images: ["/chatbot_train.png", "/chatbot.png"],
-  },
-  {
-    name: "KostLife",
-    year: "2025",
-    desc: "A mobile app for assisting users, especially students in planning and scheduling daily activities and helping to manage personal finances. Using React Native Expo as frontend and NextJS + Prisma as backend.",
-    link: [
-      "https://github.com/JasonEvan/kostlife-frontend",
-      "https://github.com/JasonEvan/kostlife-backend",
-      "https://www.figma.com/design/rxEjv3IvQ6xUURmfw9PJyS/SE-AOL?node-id=0-1&t=pcARrbGplrsreGy9-1",
-    ],
-    tech: [
-      "React Native Expo",
-      "NextJS",
-      "Expo Go",
-      "Figma",
-      "Git",
-      "Prisma",
-      "Supabase",
-      "iOS Simulator",
-    ],
-    images: ["/kostlife1.png", "/kostlife2.png", "/kostlife3.png"],
-  },
-  {
-    name: "Waste Detector",
-    year: "2025",
-    desc: "Streamlit app and mobile app using Android Studio to detect and categorize waste images using VGG16 model with dataset from Kaggle for training. At that time, I was training the VGG16 models, designed Streamlit, evaluated the model results, and created a mobile version using Android Studio.",
-    link: "https://github.com/Mis-291205/AoL-MachineLearning",
-    tech: ["Python", "Google Colab", "Kaggle", "Streamlit", "Android Studio"],
-    images: ["/waste.png", "/waste2.jpg"],
-  },
-  {
-    name: "Deepfake Detector",
-    year: "2024",
-    desc: "Streamlit app and mobile app using Android Studio to detect deep-fake images using VGG16 model with dataset from Kaggle for training. At that time, I was training the VGG16 models and created a mobile version using Android Studio.",
-    link: "https://github.com/Mis-291205/AoL-AI_VGG16",
-    tech: ["Python", "Google Colab", "Kaggle", "Streamlit", "Android Studio"],
-    images: ["/deepfake.png", "/deepfake2.jpg"],
-  },
-  {
-    name: "Computer Network",
-    year: "2024",
-    desc: "A simulation of network circuit design on 3 floors of the building, including: devices used, networking media types, media length used, IP addressing and subnetting, routing, and application layer using Cisco Packet Tracer.",
-    link: "https://github.com/Mis-291205/AoL-ComputerNetwork",
-    tech: ["Cisco Packet Tracer"],
-    images: ["/compnet1.png", "/compnet2.png"],
-  },
-  {
-    name: "Data Structure",
-    year: "2024",
-    desc: "A C program that implements a slang dictionary called “Boogle” using a Trie (prefix tree) data structure, where users can release new slang words with descriptions, search for specific slang words, view slang words that begin with a certain prefix, and display all slang words stored. These 2 images are screenshots of the code and the display when compiled and run as .exe.",
-    link: "https://github.com/Mis-291205/AOL_DataStructure",
-    tech: ["Dev C++"],
-    images: ["/ds2.png", "/ds1.png"],
-  },
-  {
-    name: "CAteriNgz",
-    year: "2024",
-    desc: "Simple web development that focuses on selling cuisine for catering using HTML, CSS, and JavaScript with a total of 8 website pages and only using JavaScript for calculating amount, total price, and login/register. This is a screenshot of the website's home page.",
-    link: "https://github.com/Mis-291205/AoL_HCI",
-    tech: ["Figma", "HTML", "CSS", "JavaScript"],
-    images: ["/cateringz.png"],
-  },
-  {
-    name: "Algorithm and Programming",
-    year: "2023",
-    desc: "A C program that is a menu-driven data management system for a CSV file that stores housing information. The program provides several options: display, search, sort, and export data while it keeps running in a loop until the user selects option 5 to exit.These 2 images are screenshots of the code and the display when compiled and run as .exe.",
-    link: "https://github.com/Mis-291205/AOL_AlgorithmAndProgramming",
-    tech: ["Dev C++"],
-    images: ["/alprog1.png", "/alprog2.png"],
-  },
-];
 
 const Projects = () => {
-  const boxBorder = useColorModeValue("#00987a", "#57dfc2");
-  const projectColor = useColorModeValue("black", "white");
-  const descColor = useColorModeValue("#4a5568", "gray.400");
-  const linkColor = useColorModeValue("#00987a", "teal.400");
-  const linkHover = useColorModeValue("#007f66", "teal.600");
-
-  const fullText = "My Projects";
-  const [displayText, setDisplayText] = useState("");
+  const reducedMotion = useReducedMotion();
+  const headingColor = useColorModeValue("gray.900", "white");
+  const mutedColor = useColorModeValue("gray.600", "gray.400");
+  const statBg = useColorModeValue("whiteAlpha.900", "whiteAlpha.100");
+  const statBorder = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
+  const cursorColor = useColorModeValue("#00987a", "#57dfc2");
+  const titleText = "Projects that turn AI ideas into usable systems.";
+  const descriptionText =
+    "A collection of AI, data, research, and app projects, with visuals and links to show how each idea was built.";
+  const [typedTitle, setTypedTitle] = useState(reducedMotion ? titleText : "");
+  const [typedDescription, setTypedDescription] = useState(
+    reducedMotion ? descriptionText : ""
+  );
+  const yearRange = `${projects[projects.length - 1]?.year ?? "2023"}-${
+    projects[0]?.year ?? "2026"
+  }`;
 
   useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setDisplayText(fullText.slice(0, i + 1));
-      i++;
-      if (i === fullText.length) {
-        clearInterval(interval);
+    if (reducedMotion) {
+      setTypedTitle(titleText);
+      setTypedDescription(descriptionText);
+      return undefined;
+    }
+
+    let titleIndex = 0;
+    let descriptionIndex = 0;
+    let descriptionTimer: ReturnType<typeof setInterval> | undefined;
+
+    setTypedTitle("");
+    setTypedDescription("");
+
+    const titleTimer = setInterval(() => {
+      titleIndex += 1;
+      setTypedTitle(titleText.slice(0, titleIndex));
+
+      if (titleIndex >= titleText.length) {
+        clearInterval(titleTimer);
+        descriptionTimer = setInterval(() => {
+          descriptionIndex += 1;
+          setTypedDescription(descriptionText.slice(0, descriptionIndex));
+
+          if (descriptionIndex >= descriptionText.length && descriptionTimer) {
+            clearInterval(descriptionTimer);
+          }
+        }, 7);
       }
-    }, 120);
-    return () => clearInterval(interval);
-  }, []);
+    }, 14);
+
+    return () => {
+      clearInterval(titleTimer);
+      if (descriptionTimer) clearInterval(descriptionTimer);
+    };
+  }, [descriptionText, reducedMotion, titleText]);
 
   return (
-    <Box py={{ base: 8, md: 12 }}>
-      <Heading
-        as="h2"
-        size="2xl"
-        mb={10}
-        ml={{ base: 5, md: 10, lg: 28 }}
-        fontFamily="monospace"
-        display="flex"
-        alignItems="center"
+    <Box
+      px={{ base: 4, md: 8, lg: 14, xl: 20 }}
+      py={{ base: 8, md: 12 }}
+      pb={{ base: 16, md: 20 }}
+      maxW="100vw"
+      overflowX="hidden"
+    >
+      <MotionBox
+        initial={{ opacity: 0, y: reducedMotion ? 0 : 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        maxW="1280px"
+        w="100%"
+        minW={0}
+        mx="auto"
+        mb={{ base: 8, md: 12 }}
       >
-        {displayText}
-        <MotionSpan
-          animate={{ opacity: [1, 0, 1] }}
-          transition={{ repeat: Infinity, duration: 0.8 }}
-          style={{ marginLeft: "2px" }}
-        >
-          |
-        </MotionSpan>
-      </Heading>
-
-      <VStack spacing={8}>
-        {projects.map((proj, index) => (
-          <MotionBox
-            key={index}
-            w="full"
-            maxW="1255px"
-            px={{ base: 4, md: 6, lg: 10 }}
-            py={6}
-            borderRadius="xl"
-            boxShadow="md"
-            border="2px solid"
-            borderColor={boxBorder}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
+        <VStack align="start" spacing={5} maxW="950px">
+          <Heading
+            as="h1"
+            color={headingColor}
+            fontSize={{ base: "4xl", md: "6xl", xl: "7xl" }}
+            lineHeight="0.98"
+            letterSpacing="0"
+            overflowWrap="break-word"
           >
-            <Stack
-              direction={{ base: "column", md: "row" }}
-              spacing={6}
-              align="center"
-            >
-              {proj.images && (
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  flexWrap="wrap"
-                  justifyContent={{ base: "center", md: "flex-start" }}
-                  alignItems="center"
-                  gap={3}
-                  maxW="750px"
-                >
-                  {proj.images.map((img, i) => (
-                    <Box
-                      key={i}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      maxH="200px"
-                      flex="1 1 auto"
-                    >
-                      <Image
-                        src={img}
-                        alt={`${proj.name} screenshot ${i + 1}`}
-                        maxH="200px"
-                        objectFit="contain"
-                        borderRadius="md"
-                        boxShadow="md"
-                      />
-                    </Box>
-                  ))}
-                </Box>
-              )}
-
-              <Box flex="1">
-                <Text
-                  color={projectColor}
-                  fontWeight="bold"
-                  fontSize="3xl"
-                  mb={1}
-                >
-                  {proj.name}
-                </Text>
-
-                <Text
-                  fontStyle="italic"
-                  color={useColorModeValue("gray.600", "gray.400")}
-                  fontSize="lg"
-                  mb={3}
-                >
-                  {proj.year}
-                </Text>
-
-                <Text mb={4} color={descColor} fontSize="xl">
-                  {proj.desc}
-                </Text>
-
-                <Text
-                  mb={3}
-                  fontWeight="bold"
-                  color={useColorModeValue("#2d3748", "#c9caceff")}
-                >
-                  Technology used: {proj.tech && proj.tech.join(", ")}
-                </Text>
-
-                {Array.isArray(proj.link) ? (
-                  proj.name === "KostLife" ? (
-                    <Stack
-                      spacing={4}
-                      direction={{ base: "column", sm: "row" }}
-                      align={{ base: "flex-start", sm: "center" }}
-                    >
-                      <Link
-                        href={proj.link[0]}
-                        isExternal
-                        fontWeight="medium"
-                        color={linkColor}
-                        fontSize="lg"
-                        display="inline-flex"
-                        alignItems="center"
-                        _hover={{ color: linkHover }}
-                      >
-                        Frontend{" "}
-                        <HiArrowTopRightOnSquare
-                          style={{ marginLeft: "6px" }}
-                        />
-                      </Link>
-                      <Link
-                        href={proj.link[1]}
-                        isExternal
-                        fontWeight="medium"
-                        color={linkColor}
-                        fontSize="lg"
-                        display="inline-flex"
-                        alignItems="center"
-                        _hover={{ color: linkHover }}
-                      >
-                        Backend{" "}
-                        <HiArrowTopRightOnSquare
-                          style={{ marginLeft: "6px" }}
-                        />
-                      </Link>
-                      <Link
-                        href={proj.link[2]}
-                        isExternal
-                        fontWeight="medium"
-                        color={linkColor}
-                        fontSize="lg"
-                        display="inline-flex"
-                        alignItems="center"
-                        _hover={{ color: linkHover }}
-                      >
-                        UI Design{" "}
-                        <HiArrowTopRightOnSquare
-                          style={{ marginLeft: "6px" }}
-                        />
-                      </Link>
-                    </Stack>
-                  ) : (
-                    (proj.name === "Parkinson MobileNet Comparison" ||
-                      proj.name ===
-                        "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa" ||
-                      proj.name === "Churn Prediction" ||
-                      proj.name ===
-                        "Image Super-Resolution: SRResNet vs ESRGAN-Lite" ||
-                      proj.name ===
-                        "Intelligent Traffic Control System (ITCS)") && (
-                      <Stack
-                        spacing={4}
-                        direction={{ base: "column", sm: "row" }}
-                        align={{ base: "flex-start", sm: "center" }}
-                      >
-                        <Link
-                          href={proj.link[0]}
-                          isExternal
-                          fontWeight="medium"
-                          color={linkColor}
-                          fontSize="lg"
-                          display="inline-flex"
-                          alignItems="center"
-                          _hover={{ color: linkHover }}
-                        >
-                          GitHub{" "}
-                          <HiArrowTopRightOnSquare
-                            style={{ marginLeft: "6px" }}
-                          />
-                        </Link>
-
-                        <Link
-                          href={proj.link[1]}
-                          isExternal
-                          fontWeight="medium"
-                          color={linkColor}
-                          fontSize="lg"
-                          display="inline-flex"
-                          alignItems="center"
-                          _hover={{ color: linkHover }}
-                        >
-                          {proj.name ===
-                          "Extractive Indonesian News Text Summarization using DistilBERT, IndoBERT, MBERT, and RoBERTa"
-                            ? "Paper"
-                            : proj.name ===
-                                "Intelligent Traffic Control System (ITCS)"
-                              ? "Demo"
-                              : "Drive"}{" "}
-                          <HiArrowTopRightOnSquare
-                            style={{ marginLeft: "6px" }}
-                          />
-                        </Link>
-                      </Stack>
-                    )
-                  )
-                ) : (
-                  <Link
-                    href={proj.link}
-                    isExternal
-                    fontWeight="medium"
-                    color={linkColor}
-                    fontSize="lg"
-                    display="inline-flex"
-                    alignItems="center"
-                    _hover={{ color: linkHover }}
-                  >
-                    GitHub{" "}
-                    <HiArrowTopRightOnSquare style={{ marginLeft: "6px" }} />
-                  </Link>
-                )}
+            {typedTitle}
+            {typedTitle.length < titleText.length && (
+              <Box as="span" className="typing-cursor" color={cursorColor}>
+                |
               </Box>
-            </Stack>
-          </MotionBox>
+            )}
+          </Heading>
+          <Text
+            color={mutedColor}
+            fontSize={{ base: "md", md: "xl" }}
+            maxW="760px"
+            lineHeight="tall"
+          >
+            {typedDescription}
+            {typedTitle.length === titleText.length && (
+              <Box as="span" className="typing-cursor" color={cursorColor}>
+                |
+              </Box>
+            )}
+          </Text>
+        </VStack>
+      </MotionBox>
+
+      <SimpleGrid
+        maxW="1280px"
+        w="100%"
+        minW={0}
+        mx="auto"
+        columns={{ base: 1, md: 3 }}
+        spacing={4}
+        mb={{ base: 8, md: 10 }}
+      >
+        {[
+          { label: "Projects", value: `${projects.length}` },
+          { label: "Years", value: yearRange },
+          { label: "Focus", value: "AI / Data / Apps" },
+        ].map((stat) => (
+          <Box
+            key={stat.label}
+            bg={statBg}
+            border="1px solid"
+            borderColor={statBorder}
+            borderRadius="lg"
+            p={{ base: 4, md: 5 }}
+            backdropFilter="blur(14px)"
+          >
+            <Text color={mutedColor} fontSize="sm">
+              {stat.label}
+            </Text>
+            <Text
+              mt={1}
+              fontSize={{ base: "2xl", md: "3xl" }}
+              fontWeight="bold"
+              color={headingColor}
+              lineHeight="short"
+            >
+              {stat.value}
+            </Text>
+          </Box>
         ))}
-      </VStack>
+      </SimpleGrid>
+
+      <Stack
+        maxW="1280px"
+        w="100%"
+        minW={0}
+        mx="auto"
+        mb={5}
+        color={mutedColor}
+        align="start"
+      >
+        <Text fontSize="sm">Sorted by most recent work</Text>
+      </Stack>
+
+      <SimpleGrid
+        maxW="1280px"
+        w="100%"
+        minW={0}
+        mx="auto"
+        columns={{ base: 1, xl: 2 }}
+        spacing={{ base: 5, md: 7 }}
+        alignItems="stretch"
+      >
+        {projects.map((project, index) => (
+          <ProjectCard key={project.id} project={project} index={index} />
+        ))}
+      </SimpleGrid>
     </Box>
   );
 };
