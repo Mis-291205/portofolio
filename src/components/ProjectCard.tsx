@@ -19,6 +19,7 @@ import {
   Tag,
   Text,
   VStack,
+  useBreakpointValue,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -143,11 +144,18 @@ const ProjectDetailModal = ({
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
   const mutedColor = useColorModeValue("gray.600", "gray.400");
   const mediaBg = useColorModeValue("gray.50", "whiteAlpha.100");
+  const isModalCentered = useBreakpointValue({ base: false, md: true });
   const externalLinks = project.links.filter((link) => link.kind !== "pdf");
   const selectedImage = project.images[activeImage];
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="5xl" isCentered>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size="5xl"
+      isCentered={isModalCentered}
+      scrollBehavior="inside"
+    >
       <ModalOverlay bg="blackAlpha.700" backdropFilter="blur(10px)" />
       <ModalContent
         bg={contentBg}
@@ -155,7 +163,8 @@ const ProjectDetailModal = ({
         borderColor={borderColor}
         w={{ base: "calc(100vw - 32px)", md: "auto" }}
         maxW={{ base: "calc(100vw - 32px)", md: "5xl" }}
-        my={{ base: 4, md: "auto" }}
+        mt={{ base: "calc(env(safe-area-inset-top) + 72px)", md: "auto" }}
+        mb={{ base: 4, md: "auto" }}
         borderRadius={{ base: "lg", md: "xl" }}
         overflow="hidden"
       >
