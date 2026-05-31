@@ -16,7 +16,7 @@ import {
   HiChevronRight,
   HiXMark,
 } from "react-icons/hi2";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type TouchEvent } from "react";
 import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 type PdfViewport = {
@@ -65,6 +65,7 @@ const PdfCanvasViewer = ({
   const [error, setError] = useState<string | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const panelBg = useColorModeValue("#fffdf8", "#121614");
   const stageBg = useColorModeValue("#f2efe8", "#181c19");
   const borderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
@@ -201,9 +202,34 @@ const PdfCanvasViewer = ({
     };
   }, [currentPage, pdf, size]);
 
-  const goPrev = () => setCurrentPage((page) => Math.max(page - 1, 1));
-  const goNext = () =>
-    setCurrentPage((page) => Math.min(page + 1, numPages || page));
+  const goPrev = useCallback(
+    () => setCurrentPage((page) => Math.max(page - 1, 1)),
+    []
+  );
+  const goNext = useCallback(
+    () => setCurrentPage((page) => Math.min(page + 1, numPages || page)),
+    [numPages]
+  );
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = touchStartRef.current;
+    if (!start) return;
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    touchStartRef.current = null;
+
+    if (Math.abs(deltaX) < 44 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) {
+      return;
+    }
+
+    if (deltaX < 0) {
+      goNext();
+    } else {
+      goPrev();
+    }
+  };
 
   return (
     <Box
@@ -244,7 +270,7 @@ const PdfCanvasViewer = ({
 
         <HStack spacing={2} justifySelf={{ base: "end", md: "center" }}>
           <IconButton
-            aria-label="Previous slide"
+            aria-label="Previous page"
             icon={<HiChevronLeft />}
             size="sm"
             variant="outline"
@@ -253,7 +279,7 @@ const PdfCanvasViewer = ({
             onClick={goPrev}
           />
           <IconButton
-            aria-label="Next slide"
+            aria-label="Next page"
             icon={<HiChevronRight />}
             size="sm"
             variant="outline"
@@ -298,21 +324,33 @@ const PdfCanvasViewer = ({
         py={{ base: 3, md: 4 }}
         borderBottom="1px solid"
         borderColor={borderColor}
+        gap={3}
       >
-        <Text fontWeight="bold" noOfLines={1}>
+        <Text fontWeight="bold" noOfLines={1} flex="1">
           {title}
         </Text>
-        <Button
-          as={Link}
-          href={src}
-          download
-          size="sm"
-          leftIcon={<HiArrowDownTray />}
-          display={{ base: "inline-flex", md: "none" }}
-          _hover={{ textDecoration: "none" }}
-        >
-          PDF
-        </Button>
+        <HStack spacing={2} display={{ base: "flex", md: "none" }}>
+          <Button
+            as={Link}
+            href={src}
+            download
+            size="sm"
+            leftIcon={<HiArrowDownTray />}
+            _hover={{ textDecoration: "none" }}
+          >
+            PDF
+          </Button>
+          {onClose && (
+            <IconButton
+              aria-label="Close PDF preview"
+              icon={<HiXMark />}
+              size="sm"
+              variant="outline"
+              bg={controlBg}
+              onClick={onClose}
+            />
+          )}
+        </HStack>
       </HStack>
 
       <Box
@@ -325,6 +363,12 @@ const PdfCanvasViewer = ({
         alignItems="center"
         justifyContent="center"
         p={{ base: 3, md: 5 }}
+        sx={{ touchAction: "pan-y" }}
+        onTouchStart={(event) => {
+          const touch = event.touches[0];
+          touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+        }}
+        onTouchEnd={handleTouchEnd}
       >
         {(loading || rendering) && (
           <Center position="absolute" inset={0} zIndex={1}>

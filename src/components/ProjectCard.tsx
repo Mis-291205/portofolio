@@ -18,7 +18,6 @@ import {
   Stack,
   Tag,
   Text,
-  Tooltip,
   VStack,
   useColorModeValue,
   useDisclosure,
@@ -154,6 +153,10 @@ const ProjectDetailModal = ({
         bg={contentBg}
         border="1px solid"
         borderColor={borderColor}
+        w={{ base: "calc(100vw - 32px)", md: "auto" }}
+        maxW={{ base: "calc(100vw - 32px)", md: "5xl" }}
+        my={{ base: 4, md: "auto" }}
+        borderRadius={{ base: "lg", md: "xl" }}
         overflow="hidden"
       >
         <ModalHeader pr={14}>
@@ -164,14 +167,18 @@ const ProjectDetailModal = ({
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody p={{ base: 4, md: 6 }}>
-          <Grid templateColumns={{ base: "1fr", lg: "1.05fr 0.95fr" }} gap={6}>
-            <VStack align="stretch" spacing={3}>
+          <Grid
+            templateColumns={{ base: "minmax(0, 1fr)", lg: "1.05fr 0.95fr" }}
+            gap={6}
+          >
+            <VStack align="stretch" spacing={3} minW={0}>
               <Box
                 position="relative"
                 overflow="hidden"
                 borderRadius="lg"
                 bg={mediaBg}
                 aspectRatio="16 / 10"
+                minW={0}
               >
                 {selectedImage ? (
                   <Image
@@ -219,9 +226,15 @@ const ProjectDetailModal = ({
               )}
             </VStack>
 
-            <VStack align="stretch" spacing={5}>
-              <Box>
-                <Badge colorScheme="teal" mb={3}>
+            <VStack align="stretch" spacing={5} minW={0}>
+              <Box minW={0}>
+                <Badge
+                  colorScheme="teal"
+                  mb={3}
+                  whiteSpace="normal"
+                  wordBreak="break-word"
+                  lineHeight="short"
+                >
                   {project.tagline}
                 </Badge>
                 <Text color={mutedColor} lineHeight="tall">
@@ -283,9 +296,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const chipBorder = useColorModeValue("teal.100", "whiteAlpha.200");
   const hoverBorder = useColorModeValue("#8accc0", "#57dfc2");
   const hoverTitle = useColorModeValue("#007f66", "#57dfc2");
-  const pdfButtonBg = useColorModeValue("#dff7f2", "#123a36");
-  const pdfButtonColor = useColorModeValue("#006b58", "#b9fff1");
-  const pdfButtonHoverBg = useColorModeValue("#c9eee7", "#164842");
   const cardShadow = useColorModeValue(
     "0 18px 60px -42px rgba(0, 72, 65, 0.55)",
     "0 24px 80px -52px rgba(87, 223, 194, 0.55)"
@@ -328,7 +338,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         cursor="pointer"
         boxShadow={cardShadow}
         backdropFilter="blur(16px)"
-        onClick={project.pdf ? openPdf : detailDisclosure.onOpen}
+        onClick={detailDisclosure.onOpen}
         _before={{
           content: '""',
           position: "absolute",
@@ -430,26 +440,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               {project.year}
             </Badge>
           </HStack>
-
-          {project.pdf && (
-            <Tooltip label="Presentation available">
-              <IconButton
-                aria-label={`Open ${project.name} presentation`}
-                icon={<FaFilePdf />}
-                position="absolute"
-                right={4}
-                bottom={4}
-                borderRadius="full"
-                bg={pdfButtonBg}
-                color={pdfButtonColor}
-                _hover={{ bg: pdfButtonHoverBg }}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  openPdf();
-                }}
-              />
-            </Tooltip>
-          )}
 
           {project.images.length > 1 && (
             <HStack
