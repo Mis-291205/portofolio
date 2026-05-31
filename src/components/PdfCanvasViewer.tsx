@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import {
   HiArrowDownTray,
+  HiArrowTopRightOnSquare,
   HiChevronLeft,
   HiChevronRight,
   HiXMark,
@@ -297,6 +298,17 @@ const PdfCanvasViewer = ({
           <IconButton
             as={Link}
             href={src}
+            isExternal
+            aria-label="Open PDF in browser"
+            icon={<HiArrowTopRightOnSquare />}
+            size="sm"
+            variant="outline"
+            bg={controlBg}
+            _hover={{ textDecoration: "none" }}
+          />
+          <IconButton
+            as={Link}
+            href={src}
             download
             aria-label="Download PDF"
             icon={<HiArrowDownTray />}
@@ -330,6 +342,17 @@ const PdfCanvasViewer = ({
           {title}
         </Text>
         <HStack spacing={2} display={{ base: "flex", md: "none" }}>
+          <IconButton
+            as={Link}
+            href={src}
+            isExternal
+            aria-label="Open PDF in browser"
+            icon={<HiArrowTopRightOnSquare />}
+            size="sm"
+            variant="outline"
+            bg={controlBg}
+            _hover={{ textDecoration: "none" }}
+          />
           <Button
             as={Link}
             href={src}
